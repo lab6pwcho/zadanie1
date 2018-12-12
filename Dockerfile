@@ -1,6 +1,5 @@
 FROM java
 RUN apt-get update
-LABEL maintainer="Piotr Kalasa"
 COPY . /
 WORKDIR /
 RUN javac DockerConnectMySQL.java
