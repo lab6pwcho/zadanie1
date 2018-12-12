@@ -4,8 +4,8 @@ public class DockerConnectMySQL {
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
    static final String DB_URL = "jdbc:mysql://10.0.10.3:3306/baza";
 
-   static final String USER = "pwozniacka";
-   static final String PASS = "password";
+   static final String USER = "pkalasa";
+   static final String PASS = "root";
    
    public static void main(String[] args) throws InterruptedException{
    Connection conn = null;
@@ -32,7 +32,7 @@ public class DockerConnectMySQL {
     try{        
       System.out.println("Check if table in base exist");
         DatabaseMetaData md = conn.getMetaData();
-        ResultSet result = md.getTables(null, null, "Tab", null);
+        ResultSet result = md.getTables(null, null, "Tabela", null);
         while (result.next()) {
             System.out.println("Table Exist");
             baseExist = true;
@@ -41,30 +41,30 @@ public class DockerConnectMySQL {
         if(!baseExist){
           System.out.println("Creating Table");
           stmt = conn.createStatement();
-          sql = "CREATE TABLE Tab(id int, kolumna1 varchar(255), kolumna2 varchar(255), kolumna3 varchar(255))";
+          sql = "CREATE TABLE Tabela(id int, kolumna1 varchar(255), kolumna2 varchar(255), kolumna3 varchar(255))";
           stmt.executeUpdate(sql);
           stmt = null;
         }     
         stmt = conn.createStatement();
         System.out.println("Inserting Data to Table");
-        sql = "INSERT INTO Tab (id, kolumna1, kolumna2, kolumna3) VALUES (1, 'wartosc1', 'wartosc2', 'wartosc3'), (2, 'wartosc4', 'wartosc5', 'wartosc6'), (3, 'wartosc7', 'wartosc8', 'wartosc9')";
+        sql = "INSERT INTO Tabela (id, kolumna1, kolumna2, kolumna3) VALUES (1, 'tekst1', 'tekst2', 'tekst3'), (2, 'tresc1', 'tresc2', 'tresc3'), (3, 'tresc1', 'tresc2', 'tresc3')";
         stmt.executeUpdate(sql);   
         stmt = null;
      
         stmt = conn.createStatement();
-        sql = "SELECT id, kolumna1, kolumna2, kolumna3 FROM Tab";
+        sql = "SELECT id, kolumna1, kolumna2, kolumna3 FROM Tabela";
         result = stmt.executeQuery(sql);
 
       while(result.next()){
 	int id  = result.getInt("id");
-	String k1 = result.getString("kolumna1");
-	String k2 = result.getString("kolumna2");
-	String k3 = result.getString("kolumna3");
+	String kol1 = result.getString("kolumna1");
+	String kol2 = result.getString("kolumna2");
+	String kol3 = result.getString("kolumna3");
     
         System.out.println("ID: " + id);
-	System.out.println(" Kolumna1: " + k1);
-        System.out.println(" Kolumna2: " + k2);
-        System.out.println(" Kolumna3: " + k3);
+	System.out.println(" Kolumna1: " + kol1);
+        System.out.println(" Kolumna2: " + kol2);
+        System.out.println(" Kolumna3: " + kol3);
     
         }
         
