@@ -4,7 +4,7 @@ public class DockerConnectMySQL {
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
    static final String DB_URL = "jdbc:mysql://10.0.10.3:3306/baza";
 
-   static final String USER = "pkalasa";
+   static final String USER = "pwozniacka";
    static final String PASS = "root";
    
    public static void main(String[] args) throws InterruptedException{
